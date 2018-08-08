@@ -1,0 +1,27 @@
+Configure miss: whether gcc is clang
+Configure miss: dld_link in -ldld
+Configure miss: _ prefix in compiled symbols
+Configure miss: sys/dl.h
+Configure miss: dld.h
+Configure miss: mach-o/dyld.h
+Configure miss: byte
+Configure miss: u32
+Configure miss: u64
+Configure miss: BDB V1 dbopen
+Configure miss: BDB V2 db_open
+Configure miss: 3store-config
+Configure miss: 3store library
+Configure miss: sqlite.h usability
+Configure miss: sqlite.h presence
+Configure miss: sqlite.h
+Configure miss: pg_config
+Configure miss: postgresql library
+Configure miss: iodbc-config
+Configure miss: iODBC support... checking for SQLConnect in -liodbc
+Configure miss: if POSIX threads should be used
+Configure miss: local ripemd160 digest module
+Configure miss: dld_link in -ldld
+Configure miss: _ prefix in compiled symbols
+Configure miss: sys/dl.h
+Configure miss: dld.h
+Configure miss: mach-o/dyld.h

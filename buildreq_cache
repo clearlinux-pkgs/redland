@@ -1,0 +1,7 @@
+1.0.17
+unixODBC-dev
+openssl-dev
+mariadb-dev
+db-dev
+sqlite-autoconf-dev
+zlib-dev

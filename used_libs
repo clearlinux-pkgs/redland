@@ -1,0 +1,14 @@
+libc.so.6
+libcrypto.so.1.0.0
+libdb-5.3.so
+libdl.so.2
+libltdl.so.7
+libm.so.6
+libmysqlclient.so.18
+libodbc.so.2
+libpthread.so.0
+libraptor2.so.0
+librasqal.so.3
+libsqlite3.so.0
+libssl.so.1.0.0
+libz.so.1
