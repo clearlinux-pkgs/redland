@@ -6,7 +6,7 @@
 #
 Name     : redland
 Version  : 1.0.17
-Release  : 1
+Release  : 2
 URL      : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source0  : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source99 : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
