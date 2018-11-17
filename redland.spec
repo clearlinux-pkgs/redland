@@ -6,18 +6,18 @@
 #
 Name     : redland
 Version  : 1.0.17
-Release  : 2
+Release  : 3
 URL      : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source0  : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source99 : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
 Summary  : Redland RDF Application Framework
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 LGPL-2.1 LGPL-2.1+
-Requires: redland-bin
-Requires: redland-lib
-Requires: redland-license
-Requires: redland-man
-Requires: redland-data
+Requires: redland-bin = %{version}-%{release}
+Requires: redland-data = %{version}-%{release}
+Requires: redland-lib = %{version}-%{release}
+Requires: redland-license = %{version}-%{release}
+Requires: redland-man = %{version}-%{release}
 BuildRequires : db-dev
 BuildRequires : docbook-xml
 BuildRequires : gtk-doc
@@ -43,9 +43,9 @@ for RDF developers to start with.
 %package bin
 Summary: bin components for the redland package.
 Group: Binaries
-Requires: redland-data
-Requires: redland-license
-Requires: redland-man
+Requires: redland-data = %{version}-%{release}
+Requires: redland-license = %{version}-%{release}
+Requires: redland-man = %{version}-%{release}
 
 %description bin
 bin components for the redland package.
@@ -62,10 +62,10 @@ data components for the redland package.
 %package dev
 Summary: dev components for the redland package.
 Group: Development
-Requires: redland-lib
-Requires: redland-bin
-Requires: redland-data
-Provides: redland-devel
+Requires: redland-lib = %{version}-%{release}
+Requires: redland-bin = %{version}-%{release}
+Requires: redland-data = %{version}-%{release}
+Provides: redland-devel = %{version}-%{release}
 
 %description dev
 dev components for the redland package.
@@ -74,7 +74,7 @@ dev components for the redland package.
 %package doc
 Summary: doc components for the redland package.
 Group: Documentation
-Requires: redland-man
+Requires: redland-man = %{version}-%{release}
 
 %description doc
 doc components for the redland package.
@@ -83,8 +83,8 @@ doc components for the redland package.
 %package lib
 Summary: lib components for the redland package.
 Group: Libraries
-Requires: redland-data
-Requires: redland-license
+Requires: redland-data = %{version}-%{release}
+Requires: redland-license = %{version}-%{release}
 
 %description lib
 lib components for the redland package.
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533754870
+export SOURCE_DATE_EPOCH=1542430259
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -126,13 +126,15 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1533754870
+export SOURCE_DATE_EPOCH=1542430259
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/redland
-cp COPYING %{buildroot}/usr/share/doc/redland/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/doc/redland/COPYING.LIB
-cp LICENSE-2.0.txt %{buildroot}/usr/share/doc/redland/LICENSE-2.0.txt
-cp libltdl/COPYING.LIB %{buildroot}/usr/share/doc/redland/libltdl_COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/redland
+cp COPYING %{buildroot}/usr/share/package-licenses/redland/COPYING
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/COPYING.LIB
+cp LICENSE-2.0.txt %{buildroot}/usr/share/package-licenses/redland/LICENSE-2.0.txt
+cp LICENSE.html %{buildroot}/usr/share/package-licenses/redland/LICENSE.html
+cp LICENSE.txt %{buildroot}/usr/share/package-licenses/redland/LICENSE.txt
+cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/libltdl_COPYING.LIB
 %make_install
 
 %files
@@ -221,14 +223,16 @@ cp libltdl/COPYING.LIB %{buildroot}/usr/share/doc/redland/libltdl_COPYING.LIB
 /usr/lib64/redland/librdf_storage_virtuoso.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/redland/COPYING
-/usr/share/doc/redland/COPYING.LIB
-/usr/share/doc/redland/LICENSE-2.0.txt
-/usr/share/doc/redland/libltdl_COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/redland/COPYING
+/usr/share/package-licenses/redland/COPYING.LIB
+/usr/share/package-licenses/redland/LICENSE-2.0.txt
+/usr/share/package-licenses/redland/LICENSE.html
+/usr/share/package-licenses/redland/LICENSE.txt
+/usr/share/package-licenses/redland/libltdl_COPYING.LIB
 
 %files man
-%defattr(-,root,root,-)
+%defattr(0644,root,root,0755)
 /usr/share/man/man1/rdfproc.1
 /usr/share/man/man1/redland-config.1
 /usr/share/man/man1/redland-db-upgrade.1
