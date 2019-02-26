@@ -6,11 +6,11 @@
 #
 Name     : redland
 Version  : 1.0.17
-Release  : 3
+Release  : 4
 URL      : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source0  : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source99 : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
-Summary  : Redland RDF Application Framework
+Summary  : Library that provides a high-level interface to RDF data
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 LGPL-2.1 LGPL-2.1+
 Requires: redland-bin = %{version}-%{release}
@@ -45,7 +45,6 @@ Summary: bin components for the redland package.
 Group: Binaries
 Requires: redland-data = %{version}-%{release}
 Requires: redland-license = %{version}-%{release}
-Requires: redland-man = %{version}-%{release}
 
 %description bin
 bin components for the redland package.
@@ -65,7 +64,9 @@ Group: Development
 Requires: redland-lib = %{version}-%{release}
 Requires: redland-bin = %{version}-%{release}
 Requires: redland-data = %{version}-%{release}
+Requires: redland-man = %{version}-%{release}
 Provides: redland-devel = %{version}-%{release}
+Requires: redland = %{version}-%{release}
 
 %description dev
 dev components for the redland package.
@@ -114,7 +115,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542430259
+export SOURCE_DATE_EPOCH=1551152532
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -126,7 +127,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1542430259
+export SOURCE_DATE_EPOCH=1551152532
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/redland
 cp COPYING %{buildroot}/usr/share/package-licenses/redland/COPYING
