@@ -7,8 +7,10 @@ Configure miss: mach-o/dyld.h
 Configure miss: byte
 Configure miss: u32
 Configure miss: u64
-Configure miss: BDB V1 dbopen
-Configure miss: BDB V2 db_open
+Configure miss: db.h usability
+Configure miss: db.h presence
+Configure miss: db.h
+Configure miss: bdb hash support
 Configure miss: 3store-config
 Configure miss: 3store library
 Configure miss: sqlite.h usability

@@ -95,7 +95,6 @@ librdf.so.0:librdf_heuristic_object_is_literal
 librdf.so.0:librdf_init_concepts
 librdf.so.0:librdf_init_digest
 librdf.so.0:librdf_init_hash
-librdf.so.0:librdf_init_hash_bdb
 librdf.so.0:librdf_init_hash_memory
 librdf.so.0:librdf_init_model
 librdf.so.0:librdf_init_model_storage

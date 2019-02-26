@@ -6,7 +6,7 @@
 #
 Name     : redland
 Version  : 1.0.17
-Release  : 4
+Release  : 5
 URL      : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source0  : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source99 : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
@@ -18,7 +18,6 @@ Requires: redland-data = %{version}-%{release}
 Requires: redland-lib = %{version}-%{release}
 Requires: redland-license = %{version}-%{release}
 Requires: redland-man = %{version}-%{release}
-BuildRequires : db-dev
 BuildRequires : docbook-xml
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
@@ -115,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551152532
+export SOURCE_DATE_EPOCH=1551152688
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -127,7 +126,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1551152532
+export SOURCE_DATE_EPOCH=1551152688
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/redland
 cp COPYING %{buildroot}/usr/share/package-licenses/redland/COPYING
