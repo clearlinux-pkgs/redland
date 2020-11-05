@@ -16,8 +16,6 @@ Configure miss: 3store library
 Configure miss: sqlite.h usability
 Configure miss: sqlite.h presence
 Configure miss: sqlite.h
-Configure miss: pg_config
-Configure miss: postgresql library
 Configure miss: iodbc-config
 Configure miss: iODBC support... checking for SQLConnect in -liodbc
 Configure miss: if POSIX threads should be used

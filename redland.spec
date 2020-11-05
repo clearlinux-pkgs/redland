@@ -6,11 +6,11 @@
 #
 Name     : redland
 Version  : 1.0.17
-Release  : 6
+Release  : 7
 URL      : http://download.librdf.org/source/redland-1.0.17.tar.gz
 Source0  : http://download.librdf.org/source/redland-1.0.17.tar.gz
-Source99 : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
-Summary  : Library that provides a high-level interface to RDF data
+Source1  : http://download.librdf.org/source/redland-1.0.17.tar.gz.asc
+Summary  : Redland RDF Application Framework
 Group    : Development/Tools
 License  : Apache-2.0 GPL-2.0 LGPL-2.1 LGPL-2.1+
 Requires: redland-bin = %{version}-%{release}
@@ -24,8 +24,10 @@ BuildRequires : gtk-doc-dev
 BuildRequires : libxslt-bin
 BuildRequires : mariadb-dev
 BuildRequires : openssl-dev
+BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(raptor2)
 BuildRequires : pkgconfig(sqlite3)
+BuildRequires : postgresql-dev
 BuildRequires : rasqal-dev
 BuildRequires : sqlite-autoconf-dev
 BuildRequires : unixODBC-dev
@@ -63,7 +65,6 @@ Group: Development
 Requires: redland-lib = %{version}-%{release}
 Requires: redland-bin = %{version}-%{release}
 Requires: redland-data = %{version}-%{release}
-Requires: redland-man = %{version}-%{release}
 Provides: redland-devel = %{version}-%{release}
 Requires: redland = %{version}-%{release}
 
@@ -108,33 +109,39 @@ man components for the redland package.
 
 %prep
 %setup -q -n redland-1.0.17
+cd %{_builddir}/redland-1.0.17
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551152688
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604603790
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1551152688
+export SOURCE_DATE_EPOCH=1604603790
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/redland
-cp COPYING %{buildroot}/usr/share/package-licenses/redland/COPYING
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/COPYING.LIB
-cp LICENSE-2.0.txt %{buildroot}/usr/share/package-licenses/redland/LICENSE-2.0.txt
-cp LICENSE.html %{buildroot}/usr/share/package-licenses/redland/LICENSE.html
-cp LICENSE.txt %{buildroot}/usr/share/package-licenses/redland/LICENSE.txt
-cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/libltdl_COPYING.LIB
+cp %{_builddir}/redland-1.0.17/COPYING %{buildroot}/usr/share/package-licenses/redland/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/redland-1.0.17/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/9a1929f4700d2407c70b507b3b2aaf6226a9543c
+cp %{_builddir}/redland-1.0.17/LICENSE-2.0.txt %{buildroot}/usr/share/package-licenses/redland/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+cp %{_builddir}/redland-1.0.17/LICENSE.html %{buildroot}/usr/share/package-licenses/redland/506d48322c918f070819a1896f1769217a6b44de
+cp %{_builddir}/redland-1.0.17/LICENSE.txt %{buildroot}/usr/share/package-licenses/redland/3152078c1f73982518fbb06d45eb7e5e0f25f147
+cp %{_builddir}/redland-1.0.17/libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/3ac522f07da0f346b37b29cd73a60f79e992ffba
 %make_install
 
 %files
@@ -154,7 +161,27 @@ cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/libltdl_C
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/librdf.h
+/usr/include/rdf_concepts.h
+/usr/include/rdf_digest.h
+/usr/include/rdf_hash.h
+/usr/include/rdf_init.h
+/usr/include/rdf_iterator.h
+/usr/include/rdf_list.h
+/usr/include/rdf_log.h
+/usr/include/rdf_model.h
+/usr/include/rdf_node.h
+/usr/include/rdf_parser.h
+/usr/include/rdf_query.h
+/usr/include/rdf_raptor.h
+/usr/include/rdf_serializer.h
+/usr/include/rdf_statement.h
+/usr/include/rdf_storage.h
+/usr/include/rdf_storage_module.h
+/usr/include/rdf_stream.h
+/usr/include/rdf_uri.h
+/usr/include/rdf_utf8.h
+/usr/include/redland.h
 /usr/lib64/librdf.so
 /usr/lib64/pkgconfig/redland.pc
 /usr/share/man/man3/redland.3
@@ -219,17 +246,18 @@ cp libltdl/COPYING.LIB %{buildroot}/usr/share/package-licenses/redland/libltdl_C
 /usr/lib64/librdf.so.0
 /usr/lib64/librdf.so.0.0.0
 /usr/lib64/redland/librdf_storage_mysql.so
+/usr/lib64/redland/librdf_storage_postgresql.so
 /usr/lib64/redland/librdf_storage_sqlite.so
 /usr/lib64/redland/librdf_storage_virtuoso.so
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/redland/COPYING
-/usr/share/package-licenses/redland/COPYING.LIB
-/usr/share/package-licenses/redland/LICENSE-2.0.txt
-/usr/share/package-licenses/redland/LICENSE.html
-/usr/share/package-licenses/redland/LICENSE.txt
-/usr/share/package-licenses/redland/libltdl_COPYING.LIB
+/usr/share/package-licenses/redland/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+/usr/share/package-licenses/redland/2b8b815229aa8a61e483fb4ba0588b8b6c491890
+/usr/share/package-licenses/redland/3152078c1f73982518fbb06d45eb7e5e0f25f147
+/usr/share/package-licenses/redland/3ac522f07da0f346b37b29cd73a60f79e992ffba
+/usr/share/package-licenses/redland/506d48322c918f070819a1896f1769217a6b44de
+/usr/share/package-licenses/redland/9a1929f4700d2407c70b507b3b2aaf6226a9543c
 
 %files man
 %defattr(0644,root,root,0755)

@@ -1,7 +1,9 @@
 1.0.17
-unixODBC-dev
-openssl-dev
-mariadb-dev
 db-dev
+mariadb-dev
+openssl-dev
+pkgconfig(glib-2.0)
+postgresql-dev
 sqlite-autoconf-dev
+unixODBC-dev
 zlib-dev
